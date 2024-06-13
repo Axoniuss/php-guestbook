@@ -20,8 +20,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>留言板</title>
+    <!-- Вышеуказанные 3 мета-тега * должны* быть размещены в начале, а любой другой контент * должен* следовать за ними! -->
+    <title>Доска</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -54,18 +54,18 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">首页 <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#">Первая страница <span class="sr-only">(current)</span></a></li>
             <!--<li><a href="#">文章页</a></li>-->
           </ul>
           
           <ul class="nav navbar-nav navbar-right">
 		  <?php if (!$isLogin) { ?>
-            <li><a href="login.php">登录</a></li>
-            <li><a href="register.php">注册</a></li>
+            <li><a href="login.php">Войти</a></li>
+            <li><a href="register.php">Регистрация</a></li>
       <?php } else {    ?>
-            <li><a href="#">欢迎您, <?php echo $user->getUsername(); ?></a></li>
-            <li><a href="admin/index.php">管理中心</a></li>
-            <li><a href="logout.php">登出</a></li>
+            <li><a href="#">Приветствую вас, <?php echo $user->getUsername(); ?></a></li>
+            <li><a href="admin/index.php">Основная страница中心</a></li>
+            <li><a href="logout.php">Выйти</a></li>
       <?php } ?>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -76,12 +76,12 @@
     <div class="jumbotron" style="background-image: url(img/bg.jpg); background-repeat: no-repeat;background-size:100% 100%;">
       <div class="container">
           <h1>Welcome to by guestbook!</h1>
-          <p>欢迎来到我的留言板!</p>
+          <p>Добро пожаловать на мою доску объявлений!</p>
           <p>
             <?php if ($isLogin) { ?>
-            <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#addComment">写留言</a>
+            <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#addComment">сообщение</a>
             <?php } else { ?>
-            <a class="btn btn-primary btn-lg" role="button" href="login.php">写留言</a>
+            <a class="btn btn-primary btn-lg" role="button" href="login.php">Написать сообщение</a>
             <?php } ?>
           </p>
        </div>
@@ -94,18 +94,18 @@
         ?>
 
       <div class="row">
-        <!-- 评论块 -->
+        <!-- Блок комментариев -->
         <div class="comment-box col-md-3 col-sm-6 col-xs-12">
-          <!-- 作者块 -->
+          <!-- Авторский блок -->
           <div class="author-box">
-            <!-- 作者头像 -->
+            <!-- Аватар автора -->
             <div id="avatar">
               <img src="./img/avatar/<?php echo $author->getAvatar()."?r=".rand(1,999999); ?>" height="150px" width="150px" />
             </div>
-            <!-- 作者信息 -->
+            <!-- Информация об авторе -->
             <div id="info">
-              <p>用户名：<?php echo $author->getUsername(); ?></p>
-              <p>等级：<?php echo $author->getLevel()>0?'<font color="red"><b>管理员</b></font>':'普通成员'; ?></p>
+              <p>имя пользователя：<?php echo $author->getUsername(); ?></p>
+              <p>уровень：<?php echo $author->getLevel()>0?'<font color="red"><b>администратор</b></font>':'普通成员'; ?></p>
             </div>
           </div>
 
@@ -113,9 +113,9 @@
           <div class="content-box">
             <!-- 留言时间 -->
             <div id="date">
-              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 留言编号: <?php echo $comments[$i]['id']; ?>
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Номер сообщения: <?php echo $comments[$i]['id']; ?>
               &nbsp;&nbsp;&nbsp;
-              <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 留言时间: <?php echo $comments[$i]['date']; ?>
+              <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Время отправки сообщения: <?php echo $comments[$i]['date']; ?>
             </div>
             <!-- 留言内容 -->
             <div id="content">
@@ -127,29 +127,29 @@
       <hr />
       <?php } ?>
     </div>
-
-    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    
+    <!---jQuery (все JavaScript-плагины Bootstrap зависят от jQuery, поэтому они должны быть размещены спереди)-->
     <script src="./js/jquery.min.js"></script>
-    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <!--Загрузите все JavaScript-плагины Bootstrap.Вы также можете загрузить только один плагин по мере необходимости. -->
     <script src="./js/bootstrap.min.js"></script>
 
 
 
-    <!-- 页脚 -->
+    <!-- Нижний колонтитул -->
     <footer class="footer">
        <div class="container">
           2018 &copy; CrazyKid's Guestbook
        </div>
     </footer>
 
-     <!-- 写留言弹窗 -->
+     <!-- Всплывающее окно "Написать сообщение" -->
     <div class="modal fade" id="addComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <form action="addcomment.php" method="post" enctype="multipart/form-data">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">写留言</h4>
+              <h4 class="modal-title" id="myModalLabel">Написать сообщение</h4>
             </div>
             <div class="modal-body">
               <textarea type="text" class="form-control" id="kindeditor" name="content" placeholder="写点什么吧......">
@@ -158,14 +158,14 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-              <button type="submit" class="btn btn-primary">提交</button>
+              <button type="submit" class="btn btn-primary">передать</button>
             </div>
         </form>
         </div>
       </div>
     </div>
 
-    <!-- HTML编辑器 -->
+    <!-- HTML-редактор -->
     <script charset="utf-8" src="./js/editor/kindeditor-all-min.js"></script>
     <script charset="utf-8" src="./js/editor/lang/zh-CN.js"></script>
     <script>

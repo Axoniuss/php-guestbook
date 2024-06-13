@@ -34,7 +34,7 @@
             exit();
           } else {
             $HintType = 'error';
-            $HintMsg = '用户名或密码不正确!';
+            $HintMsg = 'Неверное имя пользователя или пароль!';
           }
       }
   }
@@ -48,15 +48,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>用户登录</title>
+<!--Вышеуказанные 3 мета-тега * должны* быть размещены в
+ начале, а любой другой контент * должен* следовать за ними! -->    
+ <title>Вход</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-
-    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
-    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--HTML5-оболочка и ответ.js предназначен для того, чтобы позволить IE8 поддерживать элементы HTML5 и медиа-запросы ->
+    <!--Предупреждение: Отвечайте при доступе к странице по протоколу file:// (то есть перетаскивайте html-страницу непосредственно в браузер).js не работает...>
     <!--[if lt IE 9]>
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -64,7 +64,7 @@
   </head>
   <body>
 
-    <!-- 让表格往下一点..... -->
+    <!-- Дайте форме немного опуститься..... -->
     <div style="margin-top: 5%"></div>
 
 

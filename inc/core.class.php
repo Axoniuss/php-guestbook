@@ -42,12 +42,12 @@ class Database {
 			$this->err('Failed to connect to database!!');
     }
 
-    //防止被克隆
+    //Предотвратить клонирование
     private function __clone(){
 
     }
 
-    //获取对象
+    //Получить объект
     public static function getInstance(){
        if (!self::$_instance instanceof self)
 			self::$_instance = new self();
@@ -55,11 +55,11 @@ class Database {
     }
 	
 	/** 
-	 * 请求一条mysql
-	 * @param string $sql 执行的语句
-	 * @param bool $fetchfirst 是否只返回第一条结果
+	 * Запросить сообщение
+	 * @param string $sql Выполненный оператор
+	 * @param bool $fetchfirst Следует ли возвращать только первый результат
 	 *
-	 * @return 查询结果 (false为无结果)
+	 * @return $query_result (false)
 	 */
 	public function Query($sql, $fetchfirst=false)
 	{

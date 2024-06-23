@@ -22,18 +22,18 @@
 
        if (!$captcha || strtolower($captcha)!=$_SESSION['authnum_session']){
           $HintType = 'error';
-          $HintMsg = '验证码不正确';
+          $HintMsg = 'Неверный проверочный код';
        } else if (!$username) {
           $HintType = 'error';
-          $HintMsg = '请输入用户名';
+          $HintMsg = 'Пожалуйста, введите имя пользователя';
        } else if (!$password) {
           $HintType = 'error';
-          $HintMsg = '请输入密码';
+          $HintMsg = 'Пожалуйста, введите пароль';
        } else if ($password != $password_comfirm){
          $HintType = 'error';
-            $HintMsg = '两次输入的密码不一致';
+            $HintMsg = 'Введенный дважды пароль является несогласованным';
        } else {
-          //检查用户名是否已存在
+          //Проверьте, существует ли уже это имя пользователя
           $db = Database::getInstance();
           $Result = $db->Select("*", null, "user", "username='$username'", true);
 
@@ -41,16 +41,16 @@
 
           if ($Result){
             $HintType = 'error';
-            $HintMsg = '用户名已存在！';
+            $HintMsg = 'Имя пользователя уже существует!';
           }
 
-          //用户名不存在，可以注册
+          //Имя пользователя не существует, вы можете зарегистрироваться
           else {
             $password_md5 = md5($password);
             $db->Insert("user", array("username", "password"), array($username, $password_md5));
             
             $HintType = 'succeed';
-            $HintMsg = '注册成功~ <a href="login.php">去登录>></a>';
+            $HintMsg = 'Регистрация прошла успешно <a href="login.php">перейдите для входа в систему>></a>';
           }
        }
     }
@@ -63,8 +63,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>用户注册</title>
+    <title>Регистрация пользователя</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -87,17 +86,17 @@
       <div class="form-group">
 
         <?php if ($HintType=="succeed") { ?>
-        <!--注册成功的提示-->
+        <!--Советы по успешной регистрации-->
         <div class="alert alert-success col-sm-offset-4 col-sm-4 fade in" role="alert">
           <?php echo $HintMsg; ?>
-          <!--关闭按钮-->
+          <!--Кнопка закрытия-->
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
        <?php } else if ($HintType=="error") { ?>
-        <!--注册失败的提示-->
+        <!--Напоминание о сбое регистрации-->
         <div class="alert alert-danger col-sm-offset-4 col-sm-4 fade in" role="alert">
           <?php echo $HintMsg; ?>
-          <!--关闭按钮-->
+          <!--Кнопка закрытия-->
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <?php } ?>
@@ -105,50 +104,49 @@
       </div>
 
       <div class="form-group">
-        <h2 class="col-sm-offset-4 col-sm-4">用户注册</h2>
+        <h2 class="col-sm-offset-4 col-sm-4">Регистрация пользователя</h2>
       </div>
       
       <div class="form-group">
-        <label for="inputUsername" class="col-sm-4 control-label">用户名</label>
+        <label for="inputUsername" class="col-sm-4 control-label">имя пользователя</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputUsername" name="username" placeholder="请输入用户名">
+          <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Пожалуйста, введите имя пользователя">
         </div>
       </div>
       <div class="form-group">
-        <label for="inputPassword" class="col-sm-4 control-label">密码</label>
+        <label for="inputPassword" class="col-sm-4 control-label">Пароль</label>
         <div class="col-sm-3">
-          <input type="password" class="form-control" id="inputPassword" name="password" placeholder="请输入密码">
+          <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Пожалуйста, введите пароль">
         </div>
       </div>
       <div class="form-group">
-        <label for="inputPasswordConfirm" class="col-sm-4 control-label">确认密码</label>
+        <label for="inputPasswordConfirm" class="col-sm-4 control-label">Подтвердите пароль</label>
         <div class="col-sm-3">
-          <input type="password" class="form-control" id="inputPasswordConfirm" name="password_comfirm" placeholder="请再输入一次密码">
+          <input type="password" class="form-control" id="inputPasswordConfirm" name="password_comfirm" placeholder="Пожалуйста, введите пароль еще раз">
         </div>
       </div>
       <div class="form-group">
-        <label for="inputCaptcha" class="col-sm-4 control-label">验证码</label>
+        <label for="inputCaptcha" class="col-sm-4 control-label">Код подтверждения</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="inputCaptcha" name="captcha" placeholder="请输入验证码">
+          <input type="text" class="form-control" id="inputCaptcha" name="captcha" placeholder="введите проверочный код">
         </div>
-        <img id="captcha_pic" title="点击刷新" src="./inc/getCaptcha.php" align="absbottom" onclick="this.src='./inc/getCaptcha.php?'+Math.random();"></img>
+        <img id="captcha_pic" title="Нажмите кнопку обновить" src="./inc/getCaptcha.php" align="absbottom" onclick="this.src='./inc/getCaptcha.php?'+Math.random();"></img>
+        <img id="captcha_pic" title="Нажмите кнопку обновить" src="./inc/getCaptcha.php" onclick="this.src='./inc/getCaptcha.php?'+Math.random();" alt="Код подтверждения">
       </div>
       
 
       <div class="form-group">
         <div class="col-sm-offset-4 col-sm-3">
-          <button type="submit" class="btn btn-primary">注册</button>
-          <a href="login.php" class="btn btn-info">已有账号？去登录>></a>
-          <!-- <button type="submit" class="btn btn-info">已有账号？去登录>></button> -->
+          <button type="submit" class="btn btn-primary">регистрация</button>
+          <a href="login.php" class="btn btn-info">У вас уже есть учетная запись?>></a>
+          <!-- <button type="submit" class="btn btn-info">У вас уже есть учетная запись?Перейдите, чтобы войти в систему>></button> -->
         </div>
       </div>
     </form>
    
 
 
-    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -3,7 +3,7 @@
     $HintMsg = '';
 
     session_start();
-    //已登录直接跳到主页
+    //Войдя в систему, сразу переходите на главную страницу
     if (isset($_SESSION["userid"])) {
       header('Location: index.php');
       exit();
@@ -54,7 +54,6 @@
           }
        }
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -130,8 +129,7 @@
         <div class="col-sm-3">
           <input type="text" class="form-control" id="inputCaptcha" name="captcha" placeholder="введите проверочный код">
         </div>
-        <img id="captcha_pic" title="Нажмите кнопку обновить" src="./inc/getCaptcha.php" align="absbottom" onclick="this.src='./inc/getCaptcha.php?'+Math.random();"></img>
-        <img id="captcha_pic" title="Нажмите кнопку обновить" src="./inc/getCaptcha.php" onclick="this.src='./inc/getCaptcha.php?'+Math.random();" alt="Код подтверждения">
+        <img id="captcha_pic" title="обновить" src="./inc/getCaptcha.php" align="absbottom" onclick="this.src='./inc/getCaptcha.php?'+Math.random();"></img>
       </div>
       
 
